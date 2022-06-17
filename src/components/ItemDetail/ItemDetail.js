@@ -10,7 +10,7 @@ const ItemDetail = ({ data }) => {
   const { id, image, title, desc, price, stock } = data
   // max-width: 540px;
 
-  const { addProductToCart } = useContext(CartContext)
+  const { addProductToCartAmount } = useContext(CartContext)
 
   // seguir en 01:10:00 el video de context -------------
 
@@ -52,11 +52,11 @@ const ItemDetail = ({ data }) => {
                 // para cuando elige un item y su cantidad sino se me mezcla todo jeje
                 // y queda mas ordenado uno por itemDetail y el otro por ItemListContainer
                 // sin la cantidad porque no da la opcion de elegir cantidad desde el home
-                onClick={() => addProductToCart({ id, image, title, desc, price, stock })}
-                // onClick={() => addProductToCart({ id, image, title, desc, price, amount, stock })}
+                // onClick={() => addProductToCart({ id, image, title, desc, price, stock })}
+                onClick={() => addProductToCartAmount({ id, image, title, desc, price, amount, stock })}
                 className="btn btn-dark btn-add"
               >
-                <Link to="/cart">Terminar mi compra</Link>
+                <Link to="/cartAmount">Terminar mi compra</Link>
               </button>
             )}
           </div>

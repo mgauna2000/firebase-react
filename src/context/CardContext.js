@@ -6,7 +6,9 @@ const CartContext = createContext()
 const CartProvider = ({children}) => {
 
     const [cartListItems, setCartListItems] = useState([])
+    const [cartListAmount, setCartListAmount] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const [totalPriceAmount, setTotalPriceAmount] = useState(0)
 
     const addProductToCart = (product) => {
       console.log("se agrego el producto: ", product)
@@ -15,6 +17,15 @@ const CartProvider = ({children}) => {
         setTotalPrice(totalPrice + product.price)
         // setTotalPrice(totalPrice + product.price * product.amount)
        return setCartListItems(cartListItems => [...cartListItems, product])
+      }
+    }
+    const addProductToCartAmount = (product) => {
+      console.log("se agrego el producto: ", product)
+      let isInCart = cartListAmount.find(cartItem => cartItem.id == product.id)
+      if(!isInCart) {
+        setTotalPriceAmount(totalPriceAmount + product.price * product.amount)
+        // setTotalPrice(totalPrice + product.price * product.amount)
+       return setCartListAmount(cartListItems => [...cartListItems, product])
       }
     }
 
@@ -27,15 +38,16 @@ const CartProvider = ({children}) => {
       //que tome el del producto borrado ¿si tenes alguna solucion joya ya me explota la cabeza de ir entre componentes xd?
       setCartListItems(newCartListItems)
       console.log(totalPrice)
-
-
     }
 
     const data = {
         cartListItems,
+        cartListAmount,
         totalPrice,
+        totalPriceAmount,
         removeProduct,
-        addProductToCart
+        addProductToCart,
+        addProductToCartAmount
     }
 
   return (
